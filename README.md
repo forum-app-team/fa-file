@@ -308,7 +308,7 @@ For production, replace the auth middleware with your JWT verification logic.
 
 ## Testing with Postman
 
-For comprehensive API testing, use the Postman collection available in the [fa-api-collection](https://github.com/forum-app-team/fa-api-collection) repository.
+For comprehensive API testing, use the Postman collection available in the [fa-api-collection](https://github.com/forum-app-team/fa-api-collections) repository.
 
 ## Error Responses
 
