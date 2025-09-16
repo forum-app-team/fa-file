@@ -18,6 +18,7 @@ export function requireAuth(req, _res, next) {
       email: decoded.email,
       role: decoded.role,
     };
+
     next();
   } catch (err) {
     return next(errors.unauthorized('Invalid token'));
