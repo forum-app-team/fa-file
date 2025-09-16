@@ -3,10 +3,12 @@ dotenv.config();
 
 export const config = {
   env: process.env.NODE_ENV || 'development',
-  port: Number(process.env.PORT || 8080),
+
+  port: Number(process.env.PORT || 3005),
   corsOrigins: process.env.CORS_ORIGINS || 'http://localhost:5173,http://localhost:3000',
-  // Auth (mock)
-  jwtPublicKey: process.env.JWT_PUBLIC_KEY || 'MOCK',
+  // Auth (JWT)
+  jwtSecret: process.env.JWT_SECRET || 'devsecret',
+
   // S3
   region: process.env.AWS_REGION || 'us-east-1',
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,

@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.2",
     "pino": "^9.2.0",
     "pino-http": "^10.2.0",
