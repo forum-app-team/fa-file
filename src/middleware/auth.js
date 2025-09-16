@@ -1,43 +1,25 @@
-import { errors } from '../utils/errors.js';
-
-// Mock JWT validator: Accepts Authorization: Bearer demo-<userId>
-export function requireAuth(req, _res, next) {
-  const hdr = req.header('Authorization') || '';
-  const m = hdr.match(/^Bearer\s+(demo-(\d+|[A-Za-z0-9_-]+))$/);
-  if (!m) return next(errors.unauthorized());
-  const token = m[1];
-  const userId = token.replace('demo-','');
-  req.user = { userId };
-  next();
-}
-
-
-/*
-// Replace the mock auth with real JWT validation
 import jwt from 'jsonwebtoken';
+import { errors } from '../utils/errors.js';
+import { config } from '../config.js';
 
-export function requireAuth(req, res, next) {
-  const authHeader = req.header('Authorization');
-  const token = authHeader?.replace('Bearer ', '');
-  
-  if (!token) {
-    return next(errors.unauthorized('No token provided'));
-  }
-  
+// JWT validator: expects Authorization: Bearer <HS256 JWT>
+export function requireAuth(req, _res, next) {
+  const authHeader = req.header('Authorization') || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
+  if (!token) return next(errors.unauthorized('No token provided'));
+
   try {
-    // Verify the JWT token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    
-    // Extract user info from token
+    const decoded = jwt.verify(token, config.jwtSecret, { algorithms: ['HS256'] });
+    const userId = decoded?.sub;
+    if (!userId) return next(errors.unauthorized('Invalid token: missing sub'));
+
     req.user = {
-      userId: decoded.sub,
+      userId,
       email: decoded.email,
-      role: decoded.role
+      role: decoded.role,
     };
-    
     next();
   } catch (err) {
     return next(errors.unauthorized('Invalid token'));
   }
 }
-*/
