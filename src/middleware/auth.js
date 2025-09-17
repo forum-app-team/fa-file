@@ -9,7 +9,7 @@ export function requireAuth(req, _res, next) {
   if (!token) return next(errors.unauthorized('No token provided'));
 
   try {
-    const decoded = jwt.verify(token, config.jwtSecret, { algorithms: ['HS256'] });
+    const decoded = jwt.verify(token, process.env.JWT_PUBLIC_KEY);
     const userId = decoded?.sub;
     if (!userId) return next(errors.unauthorized('Invalid token: missing sub'));
 
