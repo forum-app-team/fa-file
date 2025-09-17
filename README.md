@@ -289,7 +289,7 @@ curl -X GET "http://localhost:8080/files/retrieve/u/123/profile/2025/09/uuid.png
 
 ### Post Attachments
 - **Max Size**: 20MB
-- **Allowed Types**: `image/png`, `image/jpeg`, `application/pdf`
+- **Allowed Types**: `image/png`, `image/jpeg`, `application/pdf`, `application/zip`, `application/x-zip-compressed`
 - **Usage**: File attachments in forum posts
 
 ## Authentication

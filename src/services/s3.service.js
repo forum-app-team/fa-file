@@ -26,7 +26,7 @@ const ALLOWED = {
   },
   postAttachment: {
     max: 20 * 1024 * 1024,
-    types: ['image/png', 'image/jpeg', 'application/pdf'],
+    types: ['image/png', 'image/jpeg', 'application/pdf', 'application/zip', 'application/x-zip-compressed'],
   },
 };
 
