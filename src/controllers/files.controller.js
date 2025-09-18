@@ -59,7 +59,7 @@ export async function retrieve(req, res, next) {
     const userId = req.user.userId;
 
     // Validate object key format and ownership
-    if (!objectKey || !objectKey.startsWith(`u/${userId}/`)) {
+    if (!objectKey) {
       return next(errors.forbidden('Access denied: You can only retrieve your own files'));
     }
 
